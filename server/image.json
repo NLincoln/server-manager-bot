@@ -1,13 +1,11 @@
 {
   "variables": {
-    "aws_access_key": "",
-    "aws_secret_key": ""
+    "modpack_id": null,
+    "modpack_version": null
   },
   "builders": [
     {
       "type": "amazon-ebs",
-      "access_key": "{{user `aws_access_key`}}",
-      "secret_key": "{{user `aws_secret_key`}}",
       "region": "us-east-2",
       "source_ami_filter": {
         "filters": {
@@ -20,7 +18,7 @@
       },
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "ftb_university_52_216_{{timestamp}}"
+      "ami_name": "ftb_university_{{user `modpack_id`}}_{{user `modpack_version`}}_{{timestamp}}"
     }
   ],
   "provisioners": [
@@ -30,7 +28,11 @@
     },
     {
       "type": "shell",
-      "script": "./install_minecraft.sh"
+      "script": "./install_minecraft.sh",
+      "environment_vars": [
+        "MODPACK_ID={{user `modpack_id`}}",
+        "MODPACK_VERSION={{user `modpack_version`}}"
+      ]
     },
     {
       "type": "file",
