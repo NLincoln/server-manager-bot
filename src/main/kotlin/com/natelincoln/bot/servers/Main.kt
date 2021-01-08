@@ -195,7 +195,7 @@ suspend fun startBot(config: Config, server: ServerService, dns: DnsService): Un
 }
 
 suspend fun main(): Unit = coroutineScope {
-    val config = ConfigFactory.defaultApplication()
+    val config = ConfigFactory.defaultApplication().resolve()
 
     val ec2Client = Ec2AsyncClient.builder()
         .region(Region.US_EAST_2)
@@ -224,7 +224,7 @@ suspend fun main(): Unit = coroutineScope {
         DnsService.DnsServiceConfig(
             zoneName = config.getString("netlify.dns-zone-name"),
             recordHostname = config.getString("netlify.dns-record-hostname"),
-            ttl = config.getLong("dns-ttl")
+            ttl = config.getLong("netlify.dns-ttl")
         ),
         netlifyClient
     )

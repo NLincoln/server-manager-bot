@@ -4,6 +4,11 @@ val ktorVersion = "1.5.0"
 
 plugins {
     kotlin("jvm") version "1.4.21"
+    `application`
+}
+
+application {
+    mainClass.set("com.natelincoln.bot.servers.MainKt")
 }
 
 group = "me.nathan.lincoln"

@@ -1,0 +1,10 @@
+[Unit]
+Description=Modded Minecraft Server
+
+[Service]
+Type=simple
+ExecStart=/home/ubuntu/minecraft/start.sh
+WorkingDirectory=/home/ubuntu/minecraft
+
+[Install]
+WantedBy=multi-user.target

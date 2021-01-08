@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/packer",
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": ""
@@ -21,12 +20,32 @@
       },
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "packer-example {{timestamp}}"
+      "ami_name": "ftb_university_52_216_{{timestamp}}"
     }
   ],
   "provisioners": [
     {
-      "type": ""
+      "type": "shell",
+      "inline": ["sleep 30"]
+    },
+    {
+      "type": "shell",
+      "script": "./install_minecraft.sh"
+    },
+    {
+      "type": "file",
+      "source": "./minecraft.service",
+      "destination": "/home/ubuntu/minecraft.service"
+    },
+    {
+      "type": "shell",
+      "script": "./enable_minecraft_service.sh"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "manifest",
+      "output": "image.manifest.json"
     }
   ]
 }
