@@ -19,3 +19,10 @@ chmod +x $installer_location
 mkdir $modpack_folder
 
 ./$installer_name "$MODPACK_ID" "$MODPACK_VERSION" --path $modpack_folder
+
+cd $modpack_folder
+
+# The forge installer has a bunch of version numbers in it
+java -jar forge-*-installer.jar --installServer
+
+mv minecraft_server.*.jar minecraft_server.jar

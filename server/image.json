@@ -18,7 +18,7 @@
       },
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "ftb_university_{{user `modpack_id`}}_{{user `modpack_version`}}_{{timestamp}}"
+      "ami_name": "modpack_{{user `modpack_id`}}_{{user `modpack_version`}}_{{timestamp}}"
     }
   ],
   "provisioners": [
@@ -33,6 +33,16 @@
         "MODPACK_ID={{user `modpack_id`}}",
         "MODPACK_VERSION={{user `modpack_version`}}"
       ]
+    },
+    {
+      "type": "file",
+      "source": "./server.properties",
+      "destination": "/home/ubuntu/minecraft/server.properties"
+    },
+    {
+      "type": "file",
+      "source": "./start.sh",
+      "destination": "/home/ubuntu/minecraft/start.sh"
     },
     {
       "type": "file",
