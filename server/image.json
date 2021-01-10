@@ -41,6 +41,11 @@
     },
     {
       "type": "file",
+      "source": "./eula.txt",
+      "destination": "/home/ubuntu/minecraft/eula.txt"
+    },
+    {
+      "type": "file",
       "source": "./start.sh",
       "destination": "/home/ubuntu/minecraft/start.sh"
     },

@@ -23,5 +23,5 @@ java \
   -XX:MaxTenuringThreshold=1 \
   -Dusing.aikars.flags=https://mcflags.emc.gs \
   -Daikars.new.flags=true \
-  -jar minecraft_server.jar nogui
+  -jar forge-*-universal.jar nogui
 

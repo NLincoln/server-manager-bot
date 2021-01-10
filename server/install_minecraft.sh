@@ -12,6 +12,8 @@ installer_name=modpack_installer
 
 installer_location=$home_dir/$installer_name
 
+sudo apt-get update
+sudo apt-get install openjdk-8-jre-headless --assume-yes
 
 curl "$installer_download_url" -o $installer_location
 chmod +x $installer_location
@@ -24,5 +26,3 @@ cd $modpack_folder
 
 # The forge installer has a bunch of version numbers in it
 java -jar forge-*-installer.jar --installServer
-
-mv minecraft_server.*.jar minecraft_server.jar
